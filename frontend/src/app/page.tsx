@@ -40,17 +40,23 @@ export default function Home() {
        socket.emit('chat message',msg)
    }
   return (
-    <div className="">
-    <div className="  justify-center items-center p-5">
-      <ul className="overflow-auto h-1/3 flex flex-col gap-10">
+    <div className=" h-screen flex overflow-auto w-full">
+      {/* <div className="w-2/6 h-screen bg-white" >
+
+      </div> */}
+      <div className="w-full">
+    <div className="  justify-center items-center p-5  overflow-auto h-full w-full ">
+      <ul className="overflow-auto h-full w-full  flex flex-col gap-10 ">
         {arr.map((item)=>(
-         <li>
+         <li >
           <Message item={item}/>
          </li>
         ))}
       </ul>
     </div>
+    
     <ChatForm handle={handle}/>
+    </div>
     </div>
   );
 }

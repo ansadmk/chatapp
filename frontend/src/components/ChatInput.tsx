@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChatForm=({handle}:any) => {
   return (
-    <form onSubmit={handle} className=' w-screen h-screen '>
+    <form onSubmit={handle} className=' w-4/6 fixed bottom-1  flex justify-center '>
       <label htmlFor="chat" className="sr-only">Your message</label>
       <div className="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
         <button type="button" className="inline-flex justify-center p-2 text-gray-500 rounded-lg cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
