@@ -7,7 +7,7 @@ import { io } from "socket.io-client";
 
 
 export default function Chat() {
-  const socket = io("https://chitchatbackend-seven.vercel.app");
+  const socket = io("https://chitchatbackend-dev-bqhc.1.sg-1.fl0.io");
   const [arr,setState]=useState([
     {
       message:'no messages yet'
