@@ -9,7 +9,7 @@ const Login = () => {
           const password=pass.value
           const email=mail.value
           try {
-            const res=await axios.post('http://localhost:8080/api/login',{password,email},{withCredentials:true})
+            const res=await axios.post('https://chitchatbackend-seven.vercel.app/api/login',{password,email},{withCredentials:true})
             console.log(res);
             
           } catch (error:any) {

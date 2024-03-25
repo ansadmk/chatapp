@@ -9,7 +9,7 @@ const Register = () => {
           const username=name.value
           const password=pass.value
           const email=mail.value
-          axios.post('http://localhost:8080/api/register',{username,password,email})
+          axios.post('https://chitchatbackend-seven.vercel.app/api/register',{username,password,email})
           .then((res:any)=>{
             console.log(res);
           }).catch((err:any)=>{
