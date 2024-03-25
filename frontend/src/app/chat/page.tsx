@@ -45,8 +45,8 @@ export default function Chat() {
       <div className="w-full">
     <div className="  justify-center items-center p-5  overflow-auto h-full w-full ">
       <ul className="overflow-auto h-full w-full  flex flex-col gap-10 ">
-        {arr.map((item)=>(
-         <li >
+        {arr.map((item,index)=>(
+         <li key={index} >
           <Message item={item}/>
          </li>
         ))}
