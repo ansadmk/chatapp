@@ -30,7 +30,7 @@ module.exports={
         console.log(verified);
        if (verified) {
           const token= jwt.sign({id:userDetail._id},process.env.SECRET_TOKEN)
-          res.cookie('authcookie',token,{ httpOnly: false})
+          res.cookie('authcookie',token)
            res.json({
             status:"success",
             jwt:token
