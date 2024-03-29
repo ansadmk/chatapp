@@ -6,7 +6,7 @@ import { redirect, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { FetchData, register } from "@/Redux/axios";
 import axios from "axios";
-import { getCookie } from "cookies-next";
+import { getCookie, setCookie } from "cookies-next";
 
 
 const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
@@ -22,12 +22,12 @@ export default function GlobeDemo() {
     const username=e.target.username.value
      axios.post("https://chitchatbackend-seven.vercel.app/api/anonymous",{username},{withCredentials:true}).then(
       (res:any)=>{
-        console.log(res);
+        
         
         if (res.data.status=="failure") {
           alert('Name is taken')
         }else{
-          
+          setCookie('authcookie',res.data.jwt)
           window.location.href='/chat'
         }
         
