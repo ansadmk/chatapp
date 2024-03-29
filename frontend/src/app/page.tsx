@@ -22,6 +22,8 @@ export default function GlobeDemo() {
     const username=e.target.username.value
      axios.post("https://chitchatbackend-seven.vercel.app/api/anonymous",{username},{withCredentials:true}).then(
       (res:any)=>{
+        console.log(res);
+        
         if (res.data.status=="failure") {
           alert('Name is taken')
         }else{
