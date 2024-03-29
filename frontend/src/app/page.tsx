@@ -20,7 +20,7 @@ export default function GlobeDemo() {
   const handleSubmit=async(e:any)=>{
     e.preventDefault()
     const username=e.target.username.value
-     axios.post("http://chitchatbackend-seven.vercel.app/api/anonymous",{username},{withCredentials:true}).then(
+     axios.post("https://chitchatbackend-seven.vercel.app/api/anonymous",{username},{withCredentials:true}).then(
       (res:any)=>{
         if (res.data.status=="failure") {
           alert('Name is taken')

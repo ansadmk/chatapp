@@ -14,7 +14,7 @@ const cookie =getCookie('authcookie')
 //   })
 export const axiosInstance = axios.create({
   
-  baseURL: 'http://chitchatbackend-seven.vercel.app/api',
+  baseURL: 'https://chitchatbackend-seven.vercel.app/api',
    headers:{
      Authorization:`bearer ${cookie}`
    }
