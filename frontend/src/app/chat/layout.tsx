@@ -1,9 +1,7 @@
+import Authprovider from "@/components/AuthProvider/provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { Provider } from "react-redux";
-import StoreProvider from "@/Redux/Provider";
-import { unstable_noStore as noStore } from 'next/cache'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,15 +15,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  noStore()
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        
-        <StoreProvider>
+    <main>
+      <Authprovider>
         {children}
-        </StoreProvider>
-        </body>
-    </html>
+      </Authprovider>
+    </main>
   );
 }

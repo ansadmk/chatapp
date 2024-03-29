@@ -1,8 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { FetchData, register } from "@/Redux/axios";
+import axios from "axios";
+import { getCookie } from "cookies-next";
 
 
 const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
@@ -10,7 +14,27 @@ const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World)
 });
 
 export default function GlobeDemo() {
+  const dispatch=useDispatch()
   const router=useRouter()
+  const auth=getCookie('authcookie')
+  const handleSubmit=async(e:any)=>{
+    e.preventDefault()
+    const username=e.target.username.value
+     axios.post("http://chitchatbackend-seven.vercel.app/api/anonymous",{username},{withCredentials:true}).then(
+      (res:any)=>{
+        if (res.data.status=="failure") {
+          alert('Name is taken')
+        }else{
+          
+          window.location.href='/chat'
+        }
+        
+
+      }
+     )
+    
+
+  }
   const globeConfig = {
     pointSize: 4,
     globeColor: "#062056",
@@ -396,6 +420,11 @@ export default function GlobeDemo() {
       color: colors[Math.floor(Math.random() * (colors.length - 1))],
     },
   ];
+  useEffect(
+    ()=>{
+      dispatch(FetchData() as any)
+      
+    }),[]
 
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
@@ -403,13 +432,15 @@ export default function GlobeDemo() {
       <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
             CHITCHAT
           </h2>
-          <div className="flex justify-center mb-10 mt-5 overflow-hidden  cursor-pointer">
-
-          <button className="bg-blue-950 cursor-pointer p-3 rounded-3xl" onClick={()=>router.push('/chat')}> Incognito Chat </button>
-          </div>
+          {auth ? <button onClick={()=>window.location.href='/chat'}>Continue to chat</button> : null}
           <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto ">
            Welcome To The New Age Of Communication
           </p>
+          <form action="" onSubmit={handleSubmit} className="flex gap-2 items-center justify-center">
+
+          <input type="text" id='username' className="text-black mt-3 p-3 rounded-xl " placeholder="Enter a name to chat"/>
+          <input type="submit" value="Enter" className="cursor-pointer p-3 bg-blue-900 rounded-xl mt-3" />
+          </form>
       </div>
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
       
